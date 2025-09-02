@@ -12,6 +12,8 @@ const app = express();
 // allow frontend running on localhost:5173 to access backend
 app.use(cors({
   origin: ['http://localhost:5173', 'http://127.0.0.1:5173' , 'https://notes-app-frontend-red.vercel.app' , 'https://notes-app-frontend-885gox1cp-joao-dias-projects-c47a3e98.vercel.app'],
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
 }));
 app.use(express.json());
 
