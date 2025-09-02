@@ -8,24 +8,13 @@ const noteRoutes = require('./routes/notes');
 
 const app = express();
 
-// CORS configuration
-const corsOptions = {
-  origin: [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'https://notes-app-frontend-red.vercel.app',
-    'https://notes-app-frontend-885gox1cp-joao-dias-projects-c47a3e98.vercel.app',
-  ],
-  methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type','Authorization'],
-};
-
-// apply CORS to all requests
-app.use(cors(corsOptions));
-
-// handle preflight OPTIONS requests for all routes
-app.options('*', cors(corsOptions));
-
+// middleware
+// allow frontend running on localhost:5173 to access backend
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173' , 'https://notes-app-frontend-red.vercel.app' , 'https://notes-app-frontend-885gox1cp-joao-dias-projects-c47a3e98.vercel.app'],
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
 app.use(express.json());
 
 // test API route
